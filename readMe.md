@@ -1,3 +1,5 @@
+This project was created as a school project wherein the goal was to use multiple programming languages to learn how they communicate with each other. Communication methods for this project consist of REST api to send data from a web page to a Flask server, and use of a shared object file to call C code from a python script.
+
 To run with Docker:
     
     docker build -t flaskapp.
