@@ -1,0 +1,144 @@
+{% block head %}
+<link rel="stylesheet" href="static/css/calc.css">
+<div class="header">
+    <h1 class = "title">Polyglot Graphing Calculator<br></h1>
+</div>
+    
+{% endblock %}
+
+
+{% block body %}
+<script>
+    //function for displaying values
+    function dis(val) {
+        document.getElementById("mainInput").value+=val;
+    }
+
+    //function for clearing the display
+    function clr() {
+        document.getElementById("mainInput").value = "";
+    }
+
+    //function for trying example functions
+    function sample(val) {
+        document.getElementById("mainInput").value = val;
+    }
+
+    // delete last input character
+    function del() {
+        var text = document.getElementById("mainInput").value;
+        text = text.slice(0,-1);
+        document.getElementById("mainInput").value = text;
+    }
+
+    // send equation to server
+    function submit_equation() {
+        var equation = document.getElementById('mainInput').value;
+
+        console.log(equation);
+
+        fetch(`${window.location}/parse`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(equation),
+            cache: "no-cache",
+            headers: new Headers({
+                "content-type": "application/json"
+            })
+        })
+    }
+
+    // reload frame
+    function reloadFrame(iframe, src) {
+        iframe.src = src;
+    }
+
+    // function to create unique url
+    // prevents graph file from being pulled from cache and not updating
+    function refresh_graph() {
+            var iframe = document.getElementById('graph_frame');
+            var urlBase = iframe.src;
+            var cacheParamValue = (new Date()).getTime();
+            var url = urlBase + "?cache=" + cacheParamValue;
+            reloadFrame(document.getElementById('graph_frame'), url);
+        }
+
+    </script>
+
+
+<div class = "border">
+    <input type="text" class="mainInput" id="mainInput" READONLY/>
+    <div>
+        <button type="button" class="number" onclick="dis('/')">/</button>
+        <button type="button" class="number" onclick="dis('7')">7</button>
+        <button type="button" class="number" onclick="dis('8')">8</button>
+        <button type="button" class="number" onclick="dis('9')">9</button>
+        <button type="button" class="wideButton" onclick="clr()">Clear Input</button>
+    </div>
+    <div class="break"></div>
+    <div>
+        <button type="button" class="number" onclick="dis('*')">*</button>
+        <button type="button" class="number" onclick="dis('4')">4</button>
+        <button type="button" class="number" onclick="dis('5')">5</button>
+        <button type="button" class="number" onclick="dis('6')">6</button>
+        <button type="button" class="wideButton" onclick="del()">Del</button>
+    </div>
+    <div class="break"></div>
+    <div>
+        <button type="button" class="number" onclick="dis('+')">+</button>
+        <button type="button" class="number" onclick="dis('1')">1</button>
+        <button type="button" class="number" onclick="dis('2')">2</button>
+        <button type="button" class="number" onclick="dis('3')">3</button>
+        <button type="button" class="wideButton" onclick="dis('x')">Var X</button>
+    </div>
+    <div class="break"></div>
+    <div>
+        <button type="button" class="number" onclick="dis('-')">-</button>
+        <button type="button" class="number" onclick="dis('(')">(</button>
+        <button type="button" class="number" onclick="dis('0')">0</button>
+        <button type="button" class="number" onclick="dis(')')">)</button>
+        <button type="submit" class="wideButton" onclick="submit_equation()">Submit</button>
+    </div>
+    <div class="break"></div>
+    <div>
+        <button type="button" class="number" onclick="dis('^')">Exp</button>
+        <button type="button" class="number" onclick="dis('sin(')">Sin</button>
+        <button type="button" class="number" onclick="dis('cos(')">Cos</button>
+        <button type="button" class="number" onclick="dis('tan(')">Tan</button>
+        <button type="button" class="wideButton" onclick="refresh_graph()">Load Graph</button>
+    </div>
+</div>
+<div class="guide">
+    <div class="guide-text">
+        <h2>User Guide</h2>
+        <p>
+            1. Click "Submit" to calculate the values then click "Load Graph" to refresh the iframe<br>
+            2. All invalid equations will produce a NaN graph instead of crashing<br>
+            3. A number or variable immediately followed by parenthesss is considered invalid
+            
+        </p>
+    </div>
+</div>
+
+<div class="example">
+    <div class="guide-text">
+        <h2>Example Equations</h2>
+        <button type="button" class="exampleButton" onclick="sample('3*(x^2)+x+1')">Try it</button>
+        <button type="button" class="exampleButton2" onclick="sample('sin(50*x)')">Try it</button>
+        <button type="button" class="exampleButton3" onclick="sample('(x^7)+x^2')">Try it</button>
+        <p>
+            1. 3*x^2+x+1 = = 3*(x^2)+x+1<br>
+            2. sin(50*x)<br>
+            3. (x^7)+x^2<br><br>
+            You can zoom in to a specific area my highlighting it, or using the zoom buttons<br> 
+            Click the Camera icon to download
+            
+        </p>
+    </div>
+</div>
+
+<div class="iframe">
+    <iframe src="static/test_plot.html" id="graph_frame" height="600" width="1100" title="Graph_frame" class="middle"></iframe>
+</div>
+
+{% endblock %}

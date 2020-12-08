@@ -1,0 +1,147 @@
+html {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+ }
+ 
+ body {
+    margin: 0px;
+    min-height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #d0eeff;
+ }
+
+ .header {
+    background-color: #d0eeff;
+    height: 7%;
+ }
+
+.title {
+    text-align: center;
+    font-size: 50px;
+    margin:0;
+  }
+
+.border {
+    margin: auto;
+    width: 30%;
+    border: 3px solid #000000;
+    background-color: #c7c3c3;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.guide {
+    position: absolute;
+    top:7%;
+    left:10%;
+    border: 3px solid #000000;
+    background-color: #99daff;
+    width:20%;
+    text-align: center;
+    font-size: 18px;
+}
+
+.example {
+    position: absolute;
+    top:7%;
+    left:69%;
+    border: 3px solid #000000;
+    background-color: #99daff;
+    width:23%;
+    text-align: center;
+    font-size: 18px;
+}
+
+.guide-text {
+    display: inline-block;
+    text-align: left;
+    padding: 8px;
+}
+
+.mainInput {
+    margin-left: 2%;
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+.number {
+    padding: 10px;
+    margin: 0 auto;
+    width: 50px;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.wideButton {
+    margin: 0 auto;
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+  }
+
+
+
+  .middle {
+    display: block;
+    margin: auto;
+  }
+
+  .iframe {
+      top:-20%;
+  }
+
+  .exampleButton {
+    padding: 10px;
+    margin: auto;
+    line-height: 0px;
+    left: 75%;
+    width: 60px;
+    height: 10px;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    position: absolute
+}
+
+.exampleButton2 {
+    padding: 10px;
+    margin: auto;
+    line-height: 0px;
+    left: 35%;
+    top: 40%;
+    width: 60px;
+    height: 10px;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    position: absolute
+}
+
+.exampleButton3 {
+    padding: 10px;
+    margin: auto;
+    line-height: 0px;
+    left: 35%;
+    top: 50%;
+    width: 60px;
+    height: 10px;
+    text-align: center;
+    justify-content: center;
+    align-self: center;
+    position: absolute
+}

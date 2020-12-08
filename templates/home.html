@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+<!--head-->
+{% block head %}
+<link rel="stylesheet" href="static/css/home.css">
+<title>Home</title>
+{% endblock %}
+
+<!--body-->
+{% block body %}
+<h1 class="title">CMPT 383 Polyglot Project</h1>
+<div class ="center">
+    <form method="get" action="/calc">
+        <button class="button" type="submit">Start Graphing!</button>
+    </form>
+</div>
+{% endblock %}
